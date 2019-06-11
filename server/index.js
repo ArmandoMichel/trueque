@@ -8,6 +8,12 @@ const rutas = require('./routes/')
 // INCICIALIZACION
 const app = express()
 
+// Conexión  a  la Base de Datos
+mongoose.connect("mongodb://localhost:27017/ventas", { useFindAndModify: false })
+  .then(() => console.log(" Felicitaciones conexión  a los Datos exitosamente"))
+  .catch(err => console.log("error en la conexion a la Base de Datos", err))
+
+
 
 // MIDDLEWARE
 app.use(express.json())
@@ -15,9 +21,6 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/server/api', rutas)
 
-mongoose.connect("mongodb://localhost:27017/ventas")
-  .then(() => console.log(" Felicitaciones conexion a los Datos exitosamente"))
-  .catch(err => console.log("error en la conexion a la Base de Datos", err))
 
 
 // Import and Set Nuxt.js options
